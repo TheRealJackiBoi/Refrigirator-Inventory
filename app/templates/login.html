@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="row container">
+    <form method="POST" action="/login">
+        <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <label class="checkbox">
+                <input type="checkbox" />
+                Remember me
+            </label>
+        </div>
+        <button class="button is-block is-info is-large is-fullwidth">Login</button>
+
+
+    </form>
+    </div>
+
+
+{% endblock %}
+
