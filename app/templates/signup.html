@@ -1,21 +1,30 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
-%}
+{% extends "base.html" %} 
+{% block title %}Sign Up{% endblock %} 
+{% block content %}
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
     <div class="toast">
-        {{ messages[0] }}
+        {{ messages[0] }}. Go to <a class="" href="{{ url_for('.login') }}">login page</a>.
     </div>
+
 {% endif %}
 {% endwith %}
-
-
 <div class="row container center">
-<h2>Login</h2>
+  <h2>Sign Up</h2>
 </div>
 
 <div class="row container">
-  <form method="POST" action="/login">
+  <form method="POST" action="/signup">
+    
+    <!--name-->
+    <div class="row">
+        <div class="input-field">
+          <input id="name" type="text" class="validate" />
+          <label for="name">Name</label>
+        </div>
+      </div>
+    
     <!--email-->
     <div class="row">
       <div class="input-field">
@@ -32,17 +41,9 @@
       </div>
     </div>
 
-    <!--check-->
-    <div class="row">
-      <label for="remember">
-        <input class="checkbox" type="checkbox" id="remember" name="remember" />
-        <span> Remember me</span>
-      </label>
-    </div>
-
     <!--submit-->
     <div class="row">
-      <button type="submit" class="btn">Login</button>
+      <button type="submit" class="btn">Sign Up</button>
     </div>
   </form>
 </div>
