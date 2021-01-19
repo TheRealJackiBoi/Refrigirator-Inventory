@@ -8,10 +8,53 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="">
-    
+  
+  <!-- Extra css-->
+  <style> 
+    body {display: flex; 
+          min-height: 100vh; 
+          flex-direction: column; 
+          overflow-x: hidden;} 
+      
+          
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    body::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    body {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+
+    main {flex: 1 0 auto; 
+          min-height: 100vh;}
+  </style>
+
   <nav>
     <div class="nav-wrapper blue ">
-      <a href="{{ url_for('.home')}}" class="brand-logo center grey-text text-darken-4">Dit Køleskab</a>
+      <a href="{{ url_for('.home')}}" class="brand-logo center">Dit Køleskab</a>
+      <ul class=" right"> 
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('.profile') }}" class="navbar-item">
+        Dit Køleskab
+      </a></li>
+      {% endif %}
+      {% if not current_user.is_authenticated %}
+      <li><a href="{{ url_for('.login') }}" class="navbar-item">
+        Login
+      </a></li>
+      <li><a href="{{ url_for('.signup') }}" class="navbar-item">
+        Sign Up
+      </a></li>
+      {% endif %}
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('.logout') }}" class="navbar-item">
+        Logout
+      </a></li>
+      {% endif %}
+      </ul>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="#"></a></li>
         <li><a href="#"></a></li>
@@ -20,24 +63,37 @@
     </div>
   </nav>
 
-  <nav>
-    <div class="nav-wrapper">
-      <div class="container">
-        <ul class="side-nav" id="mobile-menu">
-          <li><a href="{{ url_for('.home') }}">Home</a></li>
-          <li><a href="{{ url_for('.profile') }}">Profil</a></li>
-          <li><a href="{{ url_for('.login') }}">Login</a></li>
-          <li><a href="{{ url_for('.signup') }}">Sign Up</a></li>
-          <li><a href="{{ url_for('.logout') }}">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <main class="container">
     {% block content %}
     
     {% endblock %}
 </main>
+
+
+
+<footer class="page-footer blue bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2020 Dit Køleskabs
+    <a class="grey-text text-lighten-4 right" href="http://cudia.dk/" target="__blank">Cudia</a>
+    </div>
+  </div>
+</footer>
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>

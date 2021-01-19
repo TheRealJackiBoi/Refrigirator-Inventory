@@ -1,7 +1,7 @@
 from flask import Flask,redirect,url_for,render_template,request
 from flask.helpers import flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, login_user, login_required, current_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from models import db, User
 
 
@@ -23,13 +23,13 @@ def load_user(user_id):
 
 #hello
 
-
+#home
 @app.route('/',methods=['GET','POST'])
 def home():
     return render_template("index.html")
 
 
-
+#profile
 @app.route('/profile')
 @login_required
 def profile():
@@ -100,8 +100,10 @@ def signup_post():
 
 
 @app.route('/logout')
+@login_required
 def logout():
-    return 'Logout'
+    logout_user()
+    return redirect(url_for('.home'))
 
 
 
